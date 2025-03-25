@@ -39,7 +39,6 @@ test('search test with one way trip', async ({ page }) => {
         await searchTab.selectFlyFrom("MNL");
         await searchTab.selectDestination("DEL");
         await searchTab.inputDepartDate(departdate);
-        // Với one way, không cần nhập returndate
         await searchTab.inputTraveller({ adults: 1, childs: 1, infants: 1 });
         await searchTab.clickBtnSearch();
     });
@@ -55,8 +54,6 @@ test('search test with one way trip', async ({ page }) => {
         console.log("Actual Ticket Info:", actualTicket);
 
         expect(actualDepartDate).toBe(departdate);
-        // Nếu one way, returndate có thể là rỗng hoặc không được hiển thị
-        // expect(actualReturnDate).toBe(returndate);
         expect(actualTicket).toContain('MNL');
         expect(actualTicket).toContain('DEL');
     });
